@@ -111,11 +111,12 @@ class Isochrone(object):
             points[:,0] = m_ini
             points[:,1] = age
             points[:,2] = feh
+            self.mass = interpnd(points,m_act)
             self.tri = self.mass.tri
         else:
             self.tri = tri
+            self.mass = interpnd(self.tri,m_act)
             
-        self.mass = interpnd(self.tri,m_act)
         self.logL = interpnd(self.tri,logL)
         self.logg = interpnd(self.tri,logg)
         self.logTeff = interpnd(self.tri,np.log10(Teff))
